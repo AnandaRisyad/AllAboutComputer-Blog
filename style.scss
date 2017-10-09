@@ -1,0 +1,152 @@
+body{
+    background-color: #e6e6e6;
+}
+
+.container-fluid{
+    background-color: #00cca3;
+    height: auto;
+    margin : 0;
+}
+
+/*____________________________NAVIGATION BAR ________________*/
+nav {
+    width : 100%;
+    margin : 0;
+
+    ul{
+        overflow : hidden;
+
+        li{
+            list-style: none;
+            float: left;
+        }
+
+        li.navigation-dropdown {
+            display : none;
+        }
+    }
+
+    a {
+        text-align: center;
+        font-family: monospace;
+        text-decoration: none;
+        font-size: 36px;
+
+        display:block;
+        color:black;
+        margin : 5px;
+        padding: 5px;
+
+
+    }
+    a:hover {
+        color:white;
+        background: #006652;
+        margin : 2px;
+
+    }
+
+}
+
+@media screen and (max-width : 680px){
+    nav ul li:not(:nth-child(1)) {
+        display : none;
+    }
+
+    nav ul li.navigation-dropdown {
+        display : block;
+        float : right;
+    }
+
+    nav ul.navigation.responsive{
+        position: relative;
+    }
+
+    nav ul.navigation.responsive li.navigation-dropdown{
+        position: absolute;
+        top : 0;
+        right : 0;
+    }
+
+    nav ul.navigation.responsive li {
+        display : inline;
+        float : none;
+    }
+
+    nav ul.navigation.responsive li a {
+        display : block;
+        text-align : left;
+        text-decoration: none;
+    }
+
+}
+/*__________________________________________CONTENT___________________________*/
+
+.card {
+    padding : 4px;
+    box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+    -o-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+.section-1 {
+    background-color : rgb(26, 26, 26);
+}
+.section-offer {
+    background-color :  rgb(128, 128, 128);
+    padding : 2rem;
+}
+
+/*_______________________________CAROUSELS_________________________*/
+
+#carouselExampleIndicators{
+    margin : 20px;
+}
+
+.carousel-item {
+    height : 250px;
+
+
+    img{
+        margin : 0 auto;
+
+        height: 200px;
+    }
+
+}
+
+/*________________________________CARDS__________________________*/
+
+
+.card-img-top{
+    margin : auto;
+}
+
+
+
+/*________________________________SECTION 2_______________*/
+
+
+
+.section-2-link{
+    margin-top : 20px;
+
+    button{
+        background-color: red;
+        color : white;
+        display : block;
+        margin : auto;
+    }
+
+}
+
+
+.section-2 img{
+    border : 2px solid white
+}
+
+@media screen and (max-width : 680px){
+
+
+}
