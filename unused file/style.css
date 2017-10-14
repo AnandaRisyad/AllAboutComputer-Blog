@@ -1,6 +1,7 @@
 body{
     background-color: #e6e6e6;
 }
+
 .container-fluid{
     background-color: #00cca3;
     height: auto;
@@ -11,38 +12,40 @@ body{
 nav {
     width : 100%;
     margin : 0;
-}
-nav ul{
-    overflow : hidden;
-}
-nav a {
-    text-align: center;
-    font-family: monospace;
-    text-decoration: none;
-    font-size: 36px;
 
-    display:block;
-    color:black;
-    margin : 5px;
-    padding: 5px;
+    ul{
+        overflow : hidden;
+
+        li{
+            list-style: none;
+            float: left;
+        }
+
+        li.navigation-dropdown {
+            display : none;
+        }
+    }
+
+    a {
+        text-align: center;
+        font-family: monospace;
+        text-decoration: none;
+        font-size: 36px;
+
+        display:block;
+        color:black;
+        margin : 5px;
+        padding: 5px;
 
 
-}
+    }
+    a:hover {
+        color:white;
+        background: #006652;
+        margin : 2px;
 
-nav a:hover {
-    color:white;
-    background: #006652;
-    margin : 2px;
+    }
 
-}
-
-nav ul li{
-    list-style: none;
-    float: left;
-}
-
-nav ul li.navigation-dropdown {
-    display : none;
 }
 
 @media screen and (max-width : 680px){
@@ -50,7 +53,7 @@ nav ul li.navigation-dropdown {
         display : none;
     }
 
-    nav ul li.navigation-dropdown {
+    nav ul li#navigation-dropdown {
         display : block;
         float : right;
     }
@@ -90,7 +93,7 @@ nav ul li.navigation-dropdown {
 .section-1 {
     background-color : rgb(26, 26, 26);
 }
-.section-2 {
+.section-offer {
     background-color :  rgb(128, 128, 128);
     padding : 2rem;
 }
@@ -103,11 +106,14 @@ nav ul li.navigation-dropdown {
 
 .carousel-item {
     height : 250px;
-}
-.carousel-item img{
-    margin : 0 auto;
 
-    height: 200px;
+
+    img{
+        margin : 0 auto;
+
+        height: 200px;
+    }
+
 }
 
 /*________________________________CARDS__________________________*/
@@ -125,14 +131,16 @@ nav ul li.navigation-dropdown {
 
 .section-2-link{
     margin-top : 20px;
+
+    button{
+        background-color: red;
+        color : white;
+        display : block;
+        margin : auto;
+    }
+
 }
 
-.section-2-link button{
-    background-color: red;
-    color : white;
-    display : block;
-    margin : auto;
-}
 
 .section-2 img{
     border : 2px solid white

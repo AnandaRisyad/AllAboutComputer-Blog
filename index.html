@@ -9,7 +9,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="framework/bootstrap-4.0.0-alpha.6-dist/css/bootstrap-grid.min.css">
   <link rel="stylesheet" href="framework/bootstrap-4.0.0-alpha.6-dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.min.css">
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 
 <body>
@@ -42,6 +42,7 @@
   <script src="framework/jquery-3.2.1.min.js"></script>
   <script src="framework/tether-1.3.3\dist\js\tether.min.js"></script>
   <script src="framework/bootstrap-4.0.0-alpha.6-dist\js\bootstrap.min.js"></script>
+  <script src="script.js"></script>
   <!-- End of the scripts API's initialize. -->
 
 
@@ -61,13 +62,14 @@
       <div class="jumbotron">
         <h1 class="display-3">Hello World!</h1>
         <hr class="my-4"/>
-        <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p class="lead">"Hi! Welcome to All About Computers Blog. This website provides thousands of about technology. You can post a blog about computers to other people"
+</p>
       </div>
 
 
       <!-- ---------- Carousel -------- -->
 
-      <div class="row">
+      <div class="row" id="Carousel">
 
         <div class="col"></div>
 
@@ -125,12 +127,12 @@
         <div class="col">
           <div class="card">
             <div class="card-header">
-              Programming
+              <b>Programming</b>
             </div>
             <img class="card-img-top" src="img/CSharp.jpeg" height="250px" width="250px">
             <div class="card-block">
 
-              <h4 class="card-title">C#</h4>
+              <h4 class="card-title"><b>C#</b></h4>
               <h6 class="card-subtitle mb-2 text-muted">The most used .NET Development Language</h6>
               <p class="card-text">C# (pronounced as see sharp) is a multi-paradigm programming language encompassing strong typing, imperative,
                 declarative, functional, generic, object-oriented (class-based), and component-oriented programming disciplines.
@@ -146,12 +148,12 @@
 
           <div class="card">
             <div class="card-header">
-              Programming
+              <b>Programming</b>
             </div>
             <img class="card-img-top" src="img/C++.GIF" height="250px" width="250px">
             <div class="card-block">
 
-              <h4 class="card-title">C++</h4>
+              <h4 class="card-title"><b>C++</b></h4>
               <h6 class="card-subtitle mb-2 text-muted">The most powerful and featured Language</h6>
               <p class="card-text">C++, a language designed by Bjarne Stroustup. It is the most popular langueage a cross world<br>This language
                 is very strong, efficient, and dynamic</p>
@@ -164,12 +166,12 @@
         <div class="col">
           <div class="card">
             <div class="card-header">
-              Electronics
+              <b>Electronics</b>
             </div>
             <img class="card-img-top" src="img/Arduino.jpg" height="250px" width="250px">
             <div class="card-block">
 
-              <h4 class="card-title">Arduino</h4>
+              <h4 class="card-title"><b>Arduino</b></h4>
               <h6 class="card-subtitle mb-2 text-muted">A popular opensource Microcontrollers</h6>
               <p class="card-text">Arduino is an open source computer hardware and software company, project, and user community that designs
                 and manufactures single-board microcontrollers and microcontroller kits for building digital devices and
@@ -194,7 +196,6 @@
     <div class="section-offer">
       <div class="container">
 
-
         <div class="row">
 
           <div class="col-sm-12 col-md-1 offset-sm-2">
@@ -207,7 +208,7 @@
 
               <div class="col-md-12">
 
-                <h3>Did u know?</h3>
+                <h1 class="section-title">Did u know?</h1>
 
                 <p><b>BJARNE STROUSTUP</b> is a Danish computer scientist, most notable for the creation and development of
                   the widely used C++ programming language. He is a visiting professor at Columbia University, and works
@@ -240,10 +241,11 @@
 
         <div class="row">
           <div class="col-sm-12">
-            <div class="section-2-link">
+            <div class="section-offer-link">
               <button class="btn btn-lg" data-toggle="modal" data-target="#CppBookModal">Get Book!</button>
             </div>
           </div>
+        </div>
       </div>
 
       <!-- ---- Modals ---- -->
@@ -272,6 +274,45 @@
           </div>
         </div>
       </div>
+    </div>
+
+
+    <!-- <><><><><><><><><><><><> ACCOUNT REGISTERATION SECTION <><><><><><><><><><><><><><><><><><> -->
+
+    <div class="section-accreg">
+
+      <div class="container">
+
+        <!-- Section Title -->
+        <div class="row">
+          <div class="col"></div>
+
+          <div class="col-sm-12 col-lg-12">
+            <h1 class="section-title">CREATE UR ACCOUNT NOW!</h1>
+            <h4>Create your account and post your blogs!</h4>
+
+            <hr width="500px">
+          </div>
+
+          <div class="col"></div>
+
+        </div>
+
+        <div class="row">
+          <div class="col"></div>
+          <div class="col-sm-12 col-md-12">
+
+            <form class="form-reg" action="register/reg.php" method="post">
+              <input type="text" name="Username" value="" placeholder="Write your username. It will be displayed public info">
+              <input type="text" name="Realname" value="" placeholder="Your Realname. This info it will not be displayed in public">
+              <input type="email" name="" value="" placeholder="example@email.com">
+              <input type="password" name="" value="" placeholder="Your password">
+            </form>
+          </div>
+
+      </div>
+
+
     </div>
 
 

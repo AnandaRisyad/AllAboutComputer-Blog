@@ -1,0 +1,5 @@
+Registeration Account Rules :
+  + Username ( name of the account user, the text will be displayed in public as the user's username. [string | '_', '@'] )
+  + Realname ( the real name of the user, the text will not be displayed public )
+  + Email ( Email of the user, displayed in public, used to send emails from us )
+  + Passcode ( passcode can be a string, interger)
