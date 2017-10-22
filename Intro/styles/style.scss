@@ -2,7 +2,7 @@ body{
     background-color: #000000;
 
     .container-fluid{
-        background-color: #00cca3;
+
         height: auto;
         margin : 0;
     }
@@ -11,8 +11,9 @@ body{
 
 
 /*____________________________NAVIGATION BAR ________________*/
-
-nav {
+.navigationbar{
+  background-color: #00cca3;
+  nav {
     width : 100%;
     margin : 0;
 
@@ -83,6 +84,7 @@ nav {
     }
 
 }
+}
 /*__________________________________________CONTENT___________________________*/
 
 .section-1 {
@@ -122,11 +124,65 @@ nav {
   padding : 2rem;
   margin : 0;
   color : white;
-  text-align : center;
 
+  .section-accreg-header{
+
+    text-align: center;
+
+  }
+
+  .section-accreg-body{
+
+
+    .section-accreg-form {
+
+
+      margin : auto;
+      color : white;
+      font-family: arial;
+
+      label{
+        color : #00cca3;
+        font-weight: 20px;
+      }
+
+      @each $inputType in text, email, password{
+        input[type=#{$inputType}]{
+          height : 50px;
+          width : 250px;
+          border : none;
+          background: inherit;
+          border-bottom : 2px solid #00cca3;
+          transition: width 0.5s;
+          -webkit-transition : width 0.5s;
+        }
+        @each $pseudoType in hover, focus {
+          input[type=#{$inputType}]:#{$pseudoType}{
+            height : 50px;
+            width : 100%;
+            border : none;
+            background: inherit;
+            border-bottom : 2px solid #00cca3;
+          }
+        }
+
+        input[type=#{$inputType}]:invalid{
+          border-bottom : 5px solid red;
+        }
+      }
+
+      .section-accreg-submit {
+        color : white;
+        background : #00cca3;
+        margin : auto;
+      }
+    }
+  }
   hr {
     background-color : white;
   }
+
+
 
 }
 
@@ -142,13 +198,12 @@ nav {
   }
 
   .carousel-item {
-      height : 250px;
+      height : 400px;
 
 
       img{
           margin : 0 auto;
-
-          height: 200px;
+          height: 300px;
       }
 
   }
@@ -175,5 +230,5 @@ nav {
       color : #00cca3;
     }
 
-    
+
 }
