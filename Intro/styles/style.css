@@ -1,0 +1,185 @@
+body {
+  background-color: #000000; }
+  body .container-fluid {
+    height: auto;
+    margin: 0; }
+
+/*____________________________NAVIGATION BAR ________________*/
+.navigationbar {
+  background-color: #00cca3; }
+  .navigationbar nav {
+    width: 100%;
+    margin: 0; }
+    .navigationbar nav ul {
+      overflow: hidden; }
+      .navigationbar nav ul li {
+        list-style: none;
+        float: left; }
+      .navigationbar nav ul li.navigation-dropdown {
+        display: none; }
+    .navigationbar nav a {
+      text-align: center;
+      font-family: monospace;
+      text-decoration: none;
+      font-size: 36px;
+      display: block;
+      color: black;
+      margin: 5px;
+      padding: 5px; }
+    .navigationbar nav a:hover {
+      color: white;
+      background: #006652;
+      margin: 2px; }
+  @media screen and (max-width: 680px) {
+    .navigationbar nav ul li:not(:nth-child(1)) {
+      display: none; }
+    .navigationbar nav ul li.navigation-dropdown {
+      display: block;
+      float: right; }
+    .navigationbar nav ul.navigation.responsive {
+      position: relative; }
+    .navigationbar nav ul.navigation.responsive li.navigation-dropdown {
+      position: absolute;
+      top: 0;
+      right: 0; }
+    .navigationbar nav ul.navigation.responsive li {
+      display: inline;
+      float: none; }
+    .navigationbar nav ul.navigation.responsive li a {
+      display: block;
+      text-align: left;
+      text-decoration: none; } }
+
+/*__________________________________________CONTENT___________________________*/
+.section-1 {
+  background-color: #1a1a1a; }
+  .section-1 .jumbotron {
+    margin: 20px;
+    text-align: center; }
+
+.section-offer {
+  background-color: #1a1a1a;
+  padding: 2rem;
+  color: white; }
+  .section-offer .section-offer-link {
+    margin-top: 20px; }
+    .section-offer .section-offer-link button {
+      background-color: red;
+      color: white;
+      display: block;
+      margin: auto; }
+
+.section-accreg {
+  background: #000000;
+  padding: 2rem;
+  margin: 0;
+  color: white; }
+  .section-accreg .section-accreg-header {
+    text-align: center; }
+  .section-accreg .section-accreg-body .section-accreg-form {
+    margin: auto;
+    color: white;
+    font-family: arial; }
+    .section-accreg .section-accreg-body .section-accreg-form label {
+      color: #00cca3;
+      font-weight: 20px; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=text] {
+      height: 50px;
+      width: 250px;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3;
+      transition: width 0.5s;
+      -webkit-transition: width 0.5s; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=text]:hover {
+      height: 50px;
+      width: 100%;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=text]:focus {
+      height: 50px;
+      width: 100%;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=text]:invalid {
+      border-bottom: 5px solid red; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=email] {
+      height: 50px;
+      width: 250px;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3;
+      transition: width 0.5s;
+      -webkit-transition: width 0.5s; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=email]:hover {
+      height: 50px;
+      width: 100%;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=email]:focus {
+      height: 50px;
+      width: 100%;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=email]:invalid {
+      border-bottom: 5px solid red; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=password] {
+      height: 50px;
+      width: 250px;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3;
+      transition: width 0.5s;
+      -webkit-transition: width 0.5s; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=password]:hover {
+      height: 50px;
+      width: 100%;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=password]:focus {
+      height: 50px;
+      width: 100%;
+      border: none;
+      background: inherit;
+      border-bottom: 2px solid #00cca3; }
+    .section-accreg .section-accreg-body .section-accreg-form input[type=password]:invalid {
+      border-bottom: 5px solid red; }
+    .section-accreg .section-accreg-body .section-accreg-form .section-accreg-submit {
+      color: white;
+      background: #00cca3;
+      margin: auto; }
+  .section-accreg hr {
+    background-color: white; }
+
+.section-title {
+  color: #00cca3; }
+
+/*_______________________________CAROUSELS_________________________*/
+#Carousel #carouselExampleIndicators {
+  margin: 20px; }
+#Carousel .carousel-item {
+  height: 400px; }
+  #Carousel .carousel-item img {
+    margin: 0 auto;
+    height: 300px; }
+
+/*________________________________CARDS__________________________*/
+.card {
+  padding: 4px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  -webkit-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  -moz-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  -o-box-shadow: 5px 5px rgba(0, 0, 0, 0.5);
+  margin-top: 50px;
+  margin-bottom: 30px; }
+  .card .card-img-top {
+    margin: auto; }
+  .card .card-header {
+    color: #00cca3; }
+
+/*# sourceMappingURL=style.css.map */
