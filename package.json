@@ -1,0 +1,25 @@
+{
+  "name": "techmedia",
+  "version": "1.0.0",
+  "description": "A Social Media where you can share about technologies and your creativity with tech",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnandaRisyad/AllAboutComputer-Blog.git"
+  },
+  "author": "Ananda Risyad",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnandaRisyad/AllAboutComputer-Blog/issues"
+  },
+  "homepage": "https://github.com/AnandaRisyad/AllAboutComputer-Blog#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "mongoose": "^4.12.4"
+  }
+}

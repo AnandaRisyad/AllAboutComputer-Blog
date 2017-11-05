@@ -149,7 +149,7 @@ body{
       @each $inputType in text, email, password{
         input[type=#{$inputType}]{
           height : 50px;
-          width : 250px;
+          width : inherit;
           border : none;
           background: inherit;
           border-bottom : 2px solid #00cca3;
