@@ -4,7 +4,6 @@ var Schema = mongoose.Schema;
 var users = new Schema ({
     name:   String,
     username:   { type:String, lowercase:true },
-    id : 
     age:    { type:Number },
     likes:  { type:Number, default:0},
     followers:  { type:String, default:null},
