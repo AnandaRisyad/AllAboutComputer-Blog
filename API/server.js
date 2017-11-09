@@ -40,16 +40,25 @@ app.post('/', function(req,res){
 
 app.get('/', function(req,res){
 
-    /* TODO :
-        Read data from 'Posts' collection
-
-    */
-
-    var Post = mongose.model()
-    
-    res.send(Post);
+   	 Posts.find({}, function(err, data){
+         if(err){
+             res.status(500).send({error:"Could not get data, an error occured"});
+         }else{
+             res.status(200).send(data);
+         }
+     });
 });
 
+app.delete('/posts/delete:objid', function(req,res){
+    var urlParam = req.params.objid;
+    Posts.find({ id : urlParam }).remove(function(err, succ){
+        if(err){
+            res.status(500).send({error:"An error occured, cannot delete post"});
+        }else{
+            res.status(200).send(succ);
+        }
+    }).exec()
+});
 
 app.listen(3000,function(){
    console.log("Hello!"); 
