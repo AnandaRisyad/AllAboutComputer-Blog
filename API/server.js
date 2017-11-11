@@ -41,6 +41,7 @@ app.post('/', function(req,res){
 app.get('/', function(req,res){
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     Posts.find({}, function(err,data){
       if(err){
         res.staus(500).send({error : "Unable to get data, an error occured"});
@@ -70,6 +71,17 @@ app.listen(3000,function(){
      });
 });
 
+=======
+   	 Posts.find({}, function(err, data){
+         if(err){
+             res.status(500).send({error:"Could not get data, an error occured"});
+         }else{
+             res.status(200).send(data);
+         }
+     });
+});
+
+>>>>>>> dee46479df8e2b2e5c705af9766f1a17e1e194c8
 app.delete('/posts/delete:objid', function(req,res){
     var urlParam = req.params.objid;
     Posts.find({ id : urlParam }).remove(function(err, succ){
@@ -83,5 +95,8 @@ app.delete('/posts/delete:objid', function(req,res){
 
 app.listen(3000,function(){
    console.log("Hello!"); 
+<<<<<<< HEAD
+>>>>>>> dee46479df8e2b2e5c705af9766f1a17e1e194c8
+=======
 >>>>>>> dee46479df8e2b2e5c705af9766f1a17e1e194c8
 });
