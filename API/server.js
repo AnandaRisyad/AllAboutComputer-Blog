@@ -40,17 +40,48 @@ app.post('/', function(req,res){
 
 app.get('/', function(req,res){
 
-    /* TODO :
-        Read data from 'Posts' collection
-
-    */
-
-    var Post = mongose.model()
-    
-    res.send(Post);
+<<<<<<< HEAD
+    Posts.find({}, function(err,data){
+      if(err){
+        res.staus(500).send({error : "Unable to get data, an error occured"});
+      }else{
+        res.send(data);
+      }
+    });
 });
 
+app.delete('/deletePost:objectId', function(req, res){
+    /* TODO
+    Develop the DELETE method with objecd ID param used
+    to delete posts in Database
+    */
+    
+});
+
+app.listen(3000,function(){
+   console.log("Hello!");
+=======
+   	 Posts.find({}, function(err, data){
+         if(err){
+             res.status(500).send({error:"Could not get data, an error occured"});
+         }else{
+             res.status(200).send(data);
+         }
+     });
+});
+
+app.delete('/posts/delete:objid', function(req,res){
+    var urlParam = req.params.objid;
+    Posts.find({ id : urlParam }).remove(function(err, succ){
+        if(err){
+            res.status(500).send({error:"An error occured, cannot delete post"});
+        }else{
+            res.status(200).send(succ);
+        }
+    }).exec()
+});
 
 app.listen(3000,function(){
    console.log("Hello!"); 
+>>>>>>> dee46479df8e2b2e5c705af9766f1a17e1e194c8
 });
