@@ -2,17 +2,35 @@ var express = require('express');
 var app = express();
 var parser = require('body-parser');
 var mongoose = require('mongoose');
+var session = require('express-session');
 
 //Define Database Connection
-var db = mongoose.connect('mongodb://localhost/techmedia');
+var db = mongoose.connect("mongodb://user:admin@localhost:27017/techmedia" ,{auth:{authdb:"techmedia"}});
 
 //Import Schemas
-var Users = require('./model/users');
+var User = require('./model/user');
 var Posts = require('./model/posts');
+
 
 //Using Middleware
 app.use(parser.json());
 app.use(parser.urlencoded({extended : false}));
+//use sessions for tracking logins
+app.use(session({
+    secret: 'work hard',
+    resave: true,
+    saveUninitialized: false
+  }));
+app.use(function(req, res, next) {
+
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin");
+  res.header("Access-Control-Allow-Origin", "*");
+  
+  next();
+});
+
+// ___________________________________________________ POST Method Routes ____________________________________ //
+
 
 
 app.post('/', function(req,res){
@@ -35,8 +53,60 @@ app.post('/', function(req,res){
         else {
             res.status(200).send(save);
         }
-    })
+    });
 });
+
+app.post('/auth', function (req, res,next){
+    if (req.body.email &&
+        req.body.username &&
+        req.body.password &&
+        req.body.realname) {
+      
+        var userData = {
+          
+          username: req.body.username,
+          realname : req.body.realname,
+          email: req.body.email,
+          password: req.body.password
+        }
+      
+        //use schema.create to insert data into the db
+        User.create(userData, function (err, user) {
+
+          // if there is an error while creating user  
+          if (err) {
+            console.log("error occured while creating user " + err);
+            res.status(500).send({error : err});
+            // success create new user / registered new user
+          } else {
+            console.log("Success!");
+            req.session.userId = user._id;
+            res.status(200).send("Success registering new user!");
+            
+          }
+        });
+      }
+      else if (req.body.logemail && req.body.logpassword){
+        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
+            if (error || !user) {
+              var err = new Error('Wrong email or password.');
+              err.status = 401;
+              return next(err);
+            } else {
+              req.session.userId = user._id;
+              console.log("U ar logged in!");
+              res.status(200).send("Logged In!");
+            }
+          });
+      }
+      else {
+          var err = new Error("Please insert the required data inputs");
+          res.status(401).send(err);
+          
+      }
+});
+
+// ___________________________________________________ GET Method Routes ____________________________________ //
 
 app.get('/', function(req,res){
 
@@ -47,17 +117,51 @@ app.get('/', function(req,res){
              res.status(200).send(data);
          }
      });
+     
 });
+
+
+app.get('/user', function (req, res, next){
+    User.findById(req.session.userId)
+    .exec(function (error, user) {
+      if (error) {
+        return next(error);
+      } else {
+        if (user === null) {
+          var err = new Error('Not authorized! Go back!');
+          err.status = 400;
+          return next(err);
+        } else {
+          return res.send(user);
+        }
+      }
+    });
+});
+
+
+app.get('/logout', function (req, res, next) {
+    if (req.session) {
+      // delete session object
+      req.session.destroy(function (err) {
+        if (err) {
+          return next(err);
+        } else {
+          return res.redirect('/');
+        }
+      });
+    }
+  });
+// ___________________________________________________ DELETE Method Routes ____________________________________ //
 
 app.delete('/posts/delete:objid', function(req,res){
     var urlParam = req.params.objid;
     Posts.find({ id : urlParam }).remove(function(err, succ){
         if(err){
             res.status(500).send({error:"An error occured, cannot delete post"});
-        }else{
+        }else{3000
             res.status(200).send(succ);
         }
-    }).exec()
+    }).exec()           
 });
 
 app.listen(3000,function(){

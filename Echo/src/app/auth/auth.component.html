@@ -1,0 +1,88 @@
+<div class="container">
+
+  <div class="row">
+    <div class="col-lg-12" *ngIf="!User; else profile">
+      
+      <form [formGroup]='LoginForm' (ngSubmit)="login(LoginForm.value)">
+        <div class="form-group">
+          <label>Email
+            <input type="text" formControlName="logEmail" class="form-control">
+          </label>
+        </div>
+        <div class="form-group">
+          <label>Password
+            <input type="password" formControlName="logPassword" class="form-control">
+          </label>
+        </div>
+        <button type="reset" class="btn btn-primary">Clear</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+      <ng-template #profile>
+        <div class="col-lg-12">
+        
+          
+          <div class="card">
+
+            <img src={{User.about.image}} class="card-img-top" alt="Profile Picture"/>
+            <div class="card-header">
+              
+              <ul class="nav nav-tabs card-header-tabs">
+
+                <li class="nav-item">
+                  <a class="nav-link active" (click)="changeAuthForm(0)">Profile</a>
+
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="changeAuthForm(1)">Setting</a>
+                </li>
+                
+              </ul>
+          
+            </div>
+
+            <div class="card-block" *ngIf="AuthForm==0; else Setting">
+
+              <h4 class="card-title">{{User.realname}}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">{{User.username}}</h6>
+              <a href={{User.email}} class="card-link">{{User.email}}</a>
+
+              <br>
+
+              <h6 class="card-title">Bio</h6>
+              <p class="card-text">{{User.about.bio}}</p>
+              <h6 class="card-title">About</h6>
+              <p class="card-text text-center">
+
+                I'm {{User.about.age}} years old
+                
+                Phone Number : {{User.phone}}
+                Birth in {{User.dob}}
+                Live at {{User.about.address}}
+
+
+              </p>
+              <h6 class="card-title">Devices</h6>
+              <p class="card-text">
+                Computer : {{User.about.device.pc}}
+                Phone : {{User.about.device.phones}}
+              </p>
+            </div>
+
+            <ng-template #Setting>
+              <div class="card-block">
+                Hi! Empty haha!
+              </div>
+            </ng-template>
+
+
+          </div>
+
+        </div>       
+      </ng-template>
+
+    </div>
+  </div>
+
+</div>

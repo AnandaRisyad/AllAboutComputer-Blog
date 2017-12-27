@@ -1,0 +1,38 @@
+<!-- This page is for main page. "home" page -->
+
+<div class="container">
+
+
+    <div class="row">
+
+        <div class="col-lg-12 col-sm-12">
+            
+            <div *ngFor="let post of posts | async">
+
+                <div class="card">
+                    
+                    <div class="card-block">
+
+                        <h4 class="card-title">{{post.title}}</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Posted by {{post.author}}</h6>
+                        <p class="card-text">{{post.content.text}}</p>
+                        <span *ngFor="let tags of post.tag">
+                            <a href="#" class="card-link">#{{tags}}</a>
+                        </span>
+                    </div>
+
+                    <img class="card-img-bottom" src="{{post.content.image}}">
+
+                    <div class="card-footer">{{post.date}}</div>
+                </div>
+
+            </div>
+
+        </div>
+
+        
+    </div>
+
+
+
+</div>

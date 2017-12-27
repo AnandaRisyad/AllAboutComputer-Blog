@@ -4,6 +4,7 @@ var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var posts = new Schema ({
     title : { type:String, default:"My Posts" },
+    author : {type:String, required:true},
     topic : { type:String, required:true },
     date : { type:Date, default: Date.now() },
     tag : [{ type:String, required:false }],
