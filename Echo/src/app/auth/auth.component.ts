@@ -15,7 +15,7 @@ import { User } from './UserInterface';
 })
 export class AuthComponent implements OnInit {
 
-  dbUrl:string = "http://localhost:3000/auth";
+  dbUrl:string = "http://localhost:3000/";
 
   LoginForm:FormGroup;
   RegisterForm:FormGroup;
@@ -24,8 +24,9 @@ export class AuthComponent implements OnInit {
   logPassword:string = '';
   _id:string;
   User:any;  
-
+  UserId:any;
   AuthForm:number;
+  
 
   constructor( private http : HttpClient, private fb : FormBuilder) {
     this.LoginForm = fb.group({
@@ -40,12 +41,15 @@ export class AuthComponent implements OnInit {
       'password' : [null, Validators.compose([Validators.required, Validators.minLength(6)])],
       'dob' : [null]
     });
+
+
   }
+
   getUser(){
-    this.User = this.http.get<User>(this.dbUrl+'/user');
-
+    this.http.get<User>(this.dbUrl + "user/:" + this.UserId).subscribe(data => {
+      this.User = data;
+    });
   }
-
   ngOnInit() {
   }
 
@@ -55,12 +59,16 @@ export class AuthComponent implements OnInit {
     const body = {
       logemail : post.logEmail,
       logpassword : post.logPassword
-    }
-    this.http.post(this.dbUrl, body).subscribe();
+    };
+    this.http.post(this.dbUrl + "auth", {
+      logemail : post.logEmail,
+      logpassword : post.logPassword
+    }).subscribe(data => {
+      this.UserId = data;
+    });
     this.logEmail, this.logPassword = '';
-    this._id = sessionStorage.getItem("userId");
 
-    this.getUser();
+    
   }
 
   
