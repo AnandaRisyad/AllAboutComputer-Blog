@@ -36,7 +36,7 @@ router.post('/', function(req,res){
     });
 });
 
-router.post('/auth', function (req, res,next){
+router.post('/auth', function (req, res, next){
     if (req.body.email &&
         req.body.username &&
         req.body.password &&
@@ -101,22 +101,20 @@ router.get('/', function(req,res){
 });
 
 
-router.get('/user/:id', function (req, res, next){
+router.get('/user', function (req, res, next){
     
-    var str = req.params.id;
-    var params = str.slice(1, str.length);
-    console.log("id : "+params);
-    var objId = ObjectId(params);
-    User.findById(objId)
+    var str = req.query.id;
+
+    User.findById(str)
     .exec(function (error, user) {
       if (error) {
         return next(error);
       } else {
           if(user === null){
-            res.status(401).send({error : "User not found with id : ["+params+"]"});
+            res.status(401).send({error : "User not found with id : ["+str+"]"});
           }else{
               
-              console.log("Success get user profile with id : " + params + " with username : " + user.username);
+              console.log("Success get user profile with id : " + str + " with username : " + user.username);
               return res.send(user);
           }
       }
@@ -150,5 +148,41 @@ router.delete('/posts/delete:objid', function(req,res){
     }).exec()           
 });
 
+
+// ___________________________________________________ PUT Method Routes ______________________________________ //
+
+router.post('/profile', function(req, res, next){
+
+  var Data = {
+    username : req.body.username,
+    realname : req.body.realname,
+    dob : req.body.dob,
+    about : {
+      address : req.body.about.address,
+      image : req.body.about.image,
+      age : req.body.about.age,
+      bio : req.body.about.bio,
+      website : req.body.about.website,
+      device : {
+        pc : req.body.about.device.pc,
+        phones : req.body.about.device.phone
+      },
+      hobby : req.body.about.hobby,
+      programmer : req.body.about.programmer,
+      job : req.body.about.job
+    }
+  }
+
+  User.findByIdAndUpdate(req.body._id, Data, function(err, success){
+    if (err){
+      console.log("Error, cannot update profile "+err);
+      res.status(500).send(Error("Error! Cannot update user profile, err : "+err));
+    }else{
+      res.status(200).send("Success update user profile");
+    }
+
+
+  });
+});
 
 module.exports = router;

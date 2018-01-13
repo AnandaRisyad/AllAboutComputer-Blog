@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { NgModel, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Session } from 'selenium-webdriver';
+
 import { Observable } from 'rxjs/Observable';
 
 import { User } from './UserInterface';
@@ -24,8 +24,10 @@ export class AuthComponent implements OnInit {
   logPassword:string = '';
   _id:string;
   User:any;  
-  UserId:any;
-  AuthForm:number;
+  UserId:any = localStorage.getItem("echo_user_id");
+  AuthForm:number = 0;
+
+
   
 
   constructor( private http : HttpClient, private fb : FormBuilder) {
@@ -45,12 +47,9 @@ export class AuthComponent implements OnInit {
 
   }
 
-  getUser(){
-    this.http.get<User>(this.dbUrl + "user/:" + this.UserId).subscribe(data => {
-      this.User = data;
-    });
-  }
+  
   ngOnInit() {
+    
   }
 
   login(post){
@@ -65,15 +64,24 @@ export class AuthComponent implements OnInit {
       logpassword : post.logPassword
     }).subscribe(data => {
       this.UserId = data;
+      localStorage.setItem("echo_user_id", data.toString());
     });
     this.logEmail, this.logPassword = '';
+
 
     
   }
 
   
-  
-  changeAuthForm(form){
-    this.AuthForm = form;
+
+
+  valueScan(input){
+    if (input == null){
+      return "null";
+    }
+    else {
+      return input;
+    }
+
   }
 }

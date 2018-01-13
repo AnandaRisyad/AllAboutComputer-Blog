@@ -12,19 +12,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component'
 
 import { RouterModule, Routes } from '@angular/router';
+import { ProfileComponent } from './profile/profile.component';
 
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'auth', component: AuthComponent },
-  { path: '**', component: PageNotFoundComponent }
-];
+
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AuthComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +30,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(appRoutes, {enableTracing:true})
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,4 +1,6 @@
 var express = require('express');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var app = express();
 var router = express.Router();
 var parser = require('body-parser');
@@ -28,13 +30,16 @@ app.use(session({
   }));
 app.use(function(req, res, next) {
 
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Methods");
   res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   
   next();
 });
 
 app.use('/', routes);
+
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
