@@ -13,8 +13,12 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 
 import { RouterModule, Routes } from '@angular/router';
 import { ProfileComponent } from './profile/profile.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './auth/login/login.component';
 
-
+import { AuthService } from './auth.service';
+import { DataService } from './data.service';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,10 @@ import { ProfileComponent } from './profile/profile.component';
     HomeComponent,
     AuthComponent,
     PageNotFoundComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent,
+    LoginComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +39,10 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

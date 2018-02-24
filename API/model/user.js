@@ -5,18 +5,19 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var jwt = require('jsonwebtoken');
 
+
 var Schema = mongoose.Schema;
 var ObjectId = mongoose.Schema.Types.ObjectId;
 
 var UserSchema = new Schema({
     username : { type:String, required:true, minlength : 3, unique:true },
-    realname : { type:String, required:true },
+    realname : { type:String, required:false },
     email : { type : String, required:true, unique:true },
     phone : { type : Number, required:true, minlength : 5},
     password : { type:String, required:true, minlength: 6 },
     dob : { type:Date },
-    joined : { type:Date, default:Date.now() },
-    about : {
+      joined : { type:Date, default:Date.now() },
+      about : {
         address : { type:String },
         image : { type:String },
         age:    { type:Number },
@@ -38,18 +39,28 @@ var UserSchema = new Schema({
 });
 
 // Generate JWT Method
-userSchema.methods.generateJwt = function() {
+UserSchema.methods.generateJwt = function() {
   var expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
 
   return jwt.sign({
     _id: this._id,
-    email: this.em7ail,
+    email: this.email,
     name: this.name,
     exp: parseInt(expiry.getTime() / 1000),
   }, "MY_SECRET");
 };
 
+UserSchema.methods.validPassword = function(password) {
+  var hash = bcrypt.compare(password, user.password, function(err, success){
+    if (err){
+      return err;
+    }else{
+      return success;
+    }
+  });
+  
+};
 
 // Passport Local Strategy
 passport.use(new LocalStrategy(
@@ -65,13 +76,29 @@ passport.use(new LocalStrategy(
         });
 
       }
-      if (!password.val)
+      if (!user.validPassword(password)){
+        return done(null, false, {
+          message : "Password False!"
+        
+        });
+
+      }
+      return done(null, user);
 
     })
   }
 ));
 
-
+UserSchema.methods.setPassword = function (password){
+  var user = this;
+  bcrypt.hash(password, 10, function (err, hash){
+    if (err) {
+      return next(err);
+    }
+    return hash;
+    next();
+  })
+}
 
 //authenticate input against database
 UserSchema.methods.authenticate = function (email, password, callback) {
@@ -92,21 +119,11 @@ UserSchema.methods.authenticate = function (email, password, callback) {
           }
         })
       });
-}
+
+    }
 
 
 
-//hashing a password before saving it to the database
-UserSchema.pre('save', function (next) {
-    var user = this;
-    bcrypt.hash(user.password, 10, function (err, hash){
-      if (err) {
-        return next(err);
-      }
-      user.password = hash;
-      next();
-    })
-  });
 
 
 

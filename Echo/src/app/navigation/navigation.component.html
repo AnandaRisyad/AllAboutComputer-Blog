@@ -1,0 +1,28 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" routerLink="/">Echo</a>
+  
+    <div class="navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+        
+            
+            <li class="nav-item">
+                <a routerLink="/about" routerLinkActive="active" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a routerLink="/contact" routerLinkActive="active" class="nav-link">Contact</a>
+            </li>
+            
+        </ul>
+
+        <ul class="navbar-nav justify-content-end">
+            <li class="nav-item">
+                <a routerLink="/login" ng-hide="isLoggedIn" routerLinkActive="active" class="nav-link link">Sign In</a>
+                <a routerLink="/profile" ng-show="isLoggedIn" routerLinkActive="active" class="nav-link link">{{ currentUser.username }}</a>
+            </li>
+        </ul>
+    </div>
+
+</nav>

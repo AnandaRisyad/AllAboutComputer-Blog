@@ -7,7 +7,10 @@ var parser = require('body-parser');
 var mongoose = require('mongoose');
 var session = require('express-session');
 
+
 var routes = require('./routes/router');
+
+
 
 //Define Database Connection
 var db = mongoose.connect("mongodb://user:admin@localhost:27017/techmedia" ,{auth:{authdb:"techmedia"}});
@@ -30,7 +33,7 @@ app.use(session({
   }));
 app.use(function(req, res, next) {
 
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Methods");
+  res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept, Access-Control-Allow-Origin, Access-Control-Allow-Methods");
   res.header("Access-Control-Allow-Origin", "*");
   res.header('Access-Control-Allow-Methods', 'PUT, POST, GET, DELETE, OPTIONS');
   
@@ -42,10 +45,14 @@ app.use('/', routes);
 
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use(function (err, req, res, next) {
   var err = new Error('File Not Found');
   err.status = 404;
   next(err);
+  if(err.name === "UnauthorizedError"){
+    res.status(401);
+    res.json({'message' : err.name + " : " + err.message});
+  }
 });
 
 app.listen(3000,function(){

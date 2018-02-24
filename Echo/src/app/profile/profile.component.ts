@@ -3,7 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { User } from './UserInterface';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-;
+// Import Services
+import { DataService } from './../data.service'
+
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -13,11 +15,13 @@ export class ProfileComponent implements OnInit {
 
   // Variables
   dbUrl:string = "http://localhost:3000/";
-  User:any
+  
   tabNumber:number = 0;
   ProfileForm:FormGroup;
 
-  constructor( private http:HttpClient, private fb:FormBuilder) {
+  User:any = {};
+
+  constructor( private http:HttpClient, private fb:FormBuilder, private auth : DataService) {
     this.ProfileForm = fb.group({
       
       'username': [null, Validators.compose([Validators.required, Validators.minLength(3)])],
@@ -33,15 +37,15 @@ export class ProfileComponent implements OnInit {
       'website':[],
       'hobby':[],
       'job':[]
-    })
-  }
-
-
-  ngOnInit() {
-    this.http.get<User>(this.dbUrl + "user?id=" + localStorage.getItem("echo_user_id")).subscribe(data => {
-      this.User = data;
     });
-  }
+
+
+    this.User = auth.getProfile()
+
+}
+
+
+  ngOnInit() {}
 
   updateProfile(form){
     const body = {

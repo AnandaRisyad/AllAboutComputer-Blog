@@ -1,7 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
-var ObjectId = mongoose.Schema.Types.ObjectId
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
+var ctrlProfile = require('./../controller/profile');
+var Auth = require("./../controller/auth");
+
+var jwt = require('express-jwt');
+var auth = jwt({
+  secret: 'MY_SECRET',
+  userProperty: 'payload'
+});
 
 //Import Schemas
 var User = require('./../model/user');
@@ -67,23 +76,7 @@ router.post('/auth', function (req, res, next){
         });
       }
       else if (req.body.logemail && req.body.logpassword){
-        User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
-            if (error || !user) {
-              var err = new Error('Wrong email or password.');
-              err.status = 401;
-              return next(err);
-            } else {
-              req.session.userId = user._id;
-              console.log("U ar logged in! id : "+req.session.userId);
-              res.status(200).send(req.session.userId)
-              
-            }
-          });
-      }
-      else {
-          var err = new Error("Please insert the required data inputs");
-          res.status(401).send(err);
-          
+        Auth.login(req, res);
       }
 });
 
@@ -100,29 +93,13 @@ router.get('/', function(req,res){
     });
 });
 
-
-router.get('/user', function (req, res, next){
-    
-    var str = req.query.id;
-
-    User.findById(str)
-    .exec(function (error, user) {
-      if (error) {
-        return next(error);
-      } else {
-          if(user === null){
-            res.status(401).send({error : "User not found with id : ["+str+"]"});
-          }else{
-              
-              console.log("Success get user profile with id : " + str + " with username : " + user.username);
-              return res.send(user);
-          }
-      }
-    });
+router.get('/user', auth, function(req, res, next){
+  ctrlProfile.profile(req,res);
 });
 
 
-router.get('/logout', function (req, res, next) {
+
+router.get('/logout', auth,function (req, res, next) {
     if (req.session) {
       // delete session object
       req.session.destroy(function (err) {

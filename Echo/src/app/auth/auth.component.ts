@@ -8,6 +8,8 @@ import { Observable } from 'rxjs/Observable';
 
 import { User } from './UserInterface';
 
+import { AuthService } from './../auth.service';
+
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',
@@ -15,6 +17,8 @@ import { User } from './UserInterface';
 })
 export class AuthComponent implements OnInit {
 
+
+  
   dbUrl:string = "http://localhost:3000/";
 
   LoginForm:FormGroup;
@@ -30,7 +34,7 @@ export class AuthComponent implements OnInit {
 
   
 
-  constructor( private http : HttpClient, private fb : FormBuilder) {
+  constructor( private http : HttpClient, private fb : FormBuilder, private auth : AuthService) {
     this.LoginForm = fb.group({
       'logEmail': [null, Validators.required],
       'logPassword': [null, Validators.required]

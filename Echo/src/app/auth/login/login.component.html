@@ -1,0 +1,29 @@
+<div class="container">
+  
+    <div class="row">
+      <div class="col-lg-12">
+        
+        <form [formGroup]='LoginForm' (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label>Email
+              <input type="text" formControlName="logEmail" class="form-control" ng-model="data.email">
+            </label>
+          </div>
+          <div class="form-group">
+            <label>Password
+              <input type="password" formControlName="logPassword" class="form-control" ng-model="data.password">
+            </label>
+          </div>
+          <button type="reset" class="btn btn-primary">Reset</button>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        
+  
+  
+  
+      </div>
+    </div>
+  
+  </div>
+  
+  
